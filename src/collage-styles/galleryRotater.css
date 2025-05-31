@@ -1,0 +1,24 @@
+.galleryRotater {
+  background-image: url("../../public/assets/sandy-texture.jpg");
+  height: 100vh;
+  width: 100%;
+}
+
+.rotaterButton {
+    color: white;
+    background-color: #cb416b;
+    border-color: #f5d9fa;
+    height: 3vh;
+}
+
+#previousButtonContainer {
+    position: absolute;
+    top: 95%;
+    left: 0%;
+}
+
+#nextButtonContainer {
+    position: absolute;
+    top: 95%;
+    right: 0%;
+}
