@@ -10,29 +10,34 @@ You can also flip back from text to the picture. For example if you flip this ca
 const PARTY_UP_MESSAGE = `I remember this day being the first time I met a lot of your friends outside of work including Yakov, Larry, Jen and Maya.\n
 Also, remember this being the first time I got high so thank you for giving me the chance to try every 'being high' stereotype 😝.\n
 PS: Check the tile below to see a funny video 👀`
+
+const COVFEFE_MESSAGE = `I honestly am not sure I remember too much about this specific day, but I do remember going to the mall 
+with you a lot mainly to get bubble tea. But, I think we both knew the real reason we went was to yap without distractions.🧋🧋`
+
+const LAST_DAY_MESSAGE = `The day we took this picture was probably one of the most bittersweet days in all of my life. 
+It was really sad to see my best friend leave the place she helped me get settled into, but on the flip side it was great to see her finally have a chance
+to spread her wings and fly out of here. Even now, I still miss our constant yapping during work hours and I always will.💬🏦`
+
 function App() {
 
-  const firstGalleryList = [{'imagePath': require('./collage-images/partyUp.jpeg'), 'scaleFactor': 0.5, 'cardBack': PARTY_UP_MESSAGE, 'topMargin': '2%', 'leftMargin': '2%'}, 
-  {'imagePath': require('./collage-images/covfefe.jpeg'), 'scaleFactor': 0.35, 'cardBack': "Test", 'topMargin': '2%', 'leftMargin': '26.5%'}, 
-  {'imagePath': require('./collage-images/goofingOff.jpeg'), 'scaleFactor': 0.55, 'cardBack': "Test", 'topMargin': '40%', 'leftMargin': '46%'}, 
-  {'imagePath': require('./collage-images/lastDay.jpeg'), 'scaleFactor': 0.55, 'cardBack': "Test", 'topMargin': '40%', 'leftMargin': '22%'}, 
-  {'imagePath': require('./collage-images/nomNom.jpeg'), 'scaleFactor': 0.93, 'cardBack': INTRODUCTION_MESSAGE, 'topMargin': '2%', 'leftMargin': '63%', 'startFlipped': true}, 
-  {'imagePath': require('./collage-images/kingShit.jpg'), 'scaleFactor': 0.4, 'cardBack': "Test", 'topMargin': '55%', leftMargin: '1.75%', 'isVideo': true}]
+  const firstGalleryList = [{'imgSrc': 'partyUp.jpeg', 'scaleFactor': 0.5, 'cardBack': PARTY_UP_MESSAGE, 'topMargin': '2%', 'leftMargin': '2%'}, 
+  {'imgSrc': 'covfefe.jpeg', 'scaleFactor': 0.35, 'cardBack': COVFEFE_MESSAGE, 'topMargin': '2%', 'leftMargin': '26.5%'}, 
+  {'imgSrc': 'goofingOff.jpeg', 'scaleFactor': 0.55, 'cardBack': "", 'topMargin': '40%', 'leftMargin': '46%', 'isVideo': true, 'videoSrc': "goofingOff.mp4"}, 
+  {'imgSrc': 'lastDay.jpeg', 'scaleFactor': 0.55, 'cardBack': LAST_DAY_MESSAGE, 'topMargin': '40%', 'leftMargin': '22%'}, 
+  {'imgSrc': 'nomNom.jpeg', 'scaleFactor': 0.93, 'cardBack': INTRODUCTION_MESSAGE, 'topMargin': '2%', 'leftMargin': '63%', 'startFlipped': true}, 
+  {'imgSrc': 'kingShit.jpg', 'scaleFactor': 0.4, 'cardBack': "", 'topMargin': '55%', leftMargin: '1.75%', 'isVideo': true, 'videoSrc':  "insideJoke.mp4"}]
+
+  const secondGalleryList = [{'imgSrc': 'partyUp.jpeg', 'scaleFactor': 0.5, 'cardBack': PARTY_UP_MESSAGE, 'topMargin': '2%', 'leftMargin': '2%'}, 
+  {'imgSrc': 'covfefe.jpeg', 'scaleFactor': 0.35, 'cardBack': COVFEFE_MESSAGE, 'topMargin': '2%', 'leftMargin': '26.5%'}, 
+  {'imgSrc': 'goofingOff.jpeg', 'scaleFactor': 0.55, 'cardBack': "", 'topMargin': '40%', 'leftMargin': '46%', 'isVideo': true, 'videoSrc': "goofingOff.mp4"}, 
+  {'imgSrc': 'lastDay.jpeg', 'scaleFactor': 0.55, 'cardBack': LAST_DAY_MESSAGE, 'topMargin': '40%', 'leftMargin': '22%'}, 
+  {'imgSrc': 'unoShyAlwin.jpeg', 'scaleFactor': 0.93, 'cardBack': INTRODUCTION_MESSAGE, 'topMargin': '2%', 'leftMargin': '63%', 'startFlipped': true}, 
+  {'imgSrc': 'unoBeachPizza.jpeg', 'scaleFactor': 0.4, 'cardBack': "", 'topMargin': '55%', leftMargin: '1.75%', 'isVideo': true, 'videoSrc':  "insideJoke.mp4"}]
 
   return (
     <div className="App">
       <header className="App-header">
-            {/* <div className='galleryContainer'>
-                <PostcardImage imagePath={require('./collage-images/partyUp.jpeg')} scaleFactor={0.5} cardBack={PARTY_UP_MESSAGE} topMargin={'2%'} leftMargin={'2%'} />
-                <PostcardImage imagePath={require('./collage-images/covfefe.jpeg')} scaleFactor={0.35} cardBack={"Test"} topMargin={'2%'} leftMargin={'26.5%'}/>
-                <PostcardImage imagePath={require('./collage-images/goofingOff.jpeg')} scaleFactor={0.55} cardBack={"Test"} topMargin={'40%'} leftMargin={'46%'}/>
-                <PostcardImage imagePath={require('./collage-images/lastDay.jpeg')} scaleFactor={0.55} cardBack={"Test"} topMargin={'40%'} leftMargin={'22%'}/>
-                <PostcardImage imagePath={require('./collage-images/nomNom.jpeg')} scaleFactor={0.93} cardBack={INTRODUCTION_MESSAGE} topMargin={'2%'} leftMargin={'63%'} startFlipped={true}/>
-                <PostcardImage imagePath={require('./collage-images/kingShit.jpg')} scaleFactor={0.4} cardBack={"Test"} topMargin={'55%'} leftMargin={'1.75%'} isVideo={true}/>
-            </div> */}
-            <GalleryRotater galleryInfoLists={[firstGalleryList, []]} />
-            {/* <GalleryContainer postcardPropList={firstGalleryList} galleryNumber={0} />
-            <GalleryContainer postcardPropList={[]} galleryNumber={1} /> */}
+            <GalleryRotater galleryInfoLists={[firstGalleryList, secondGalleryList]} />
       </header>
     </div>
   );

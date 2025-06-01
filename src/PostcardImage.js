@@ -1,27 +1,35 @@
-import { useRef, useState, useEffect} from "react";
-import './collage-styles/postcard.css'
+import { useRef, useState, useEffect, useCallback} from "react";
+import './collage-styles/postcard.css';
 
-function PostcardImage({imagePath, scaleFactor, cardBack, topMargin, leftMargin, startFlipped=false, isVideo=false, postcardNumber, galleryNumber})  {
+function PostcardImage({imgSrc, scaleFactor, cardBack, topMargin, leftMargin, postcardNumber, galleryNumber, startFlipped=false, isVideo=false, videoSrc=""})  {
     const elementRef = useRef(null);
     const [dimensions, setDimensions] = useState({ height: "0px", width: "0px"});
     const [isFlipped, setFlipped] = useState(startFlipped);
-    
-    useEffect(() => {
-      const sizeImageToWindow = () => {
-        const aspectRatio = elementRef.current.naturalWidth / elementRef.current.naturalHeight;
-        const windowHeight = window.innerHeight;
-        const imageHeight = windowHeight * scaleFactor;
-        const imageWidth = imageHeight * aspectRatio;
-        setDimensions({position: 'absolute', height: imageHeight, width: imageWidth, top: topMargin, left: leftMargin});
-      } 
+
+    const sizeImageToWindow = useCallback(() => {
+        if(elementRef.current) {
+          const aspectRatio = elementRef.current.naturalWidth / elementRef.current.naturalHeight;
+          const windowHeight = window.innerHeight;
+          const imageHeight = windowHeight * scaleFactor;
+          const imageWidth = imageHeight * aspectRatio;
+          setDimensions({position: 'absolute', height: imageHeight, width: imageWidth, top: topMargin, left: leftMargin});
+        }
+    },[scaleFactor, leftMargin, topMargin]);
+
+    function handleImageLoad(event) {
       sizeImageToWindow();
+    }
+
+
+    useEffect(() => {
       window.addEventListener("resize", sizeImageToWindow);
       return () => {
         window.removeEventListener("resize", sizeImageToWindow);
       }
-    },[scaleFactor, topMargin, leftMargin])
+    },[sizeImageToWindow]);
 
-    const handleFlip = () => {
+    function handleFlip(event)  {
+        event.preventDefault();
         setFlipped(!isFlipped);
         if(isVideo && isFlipped) {
           let postcardVid = document.getElementById('video_'+galleryNumber+'_'+postcardNumber);
@@ -39,13 +47,13 @@ function PostcardImage({imagePath, scaleFactor, cardBack, topMargin, leftMargin,
               <div className="flip-card-inner">
                   <div className="flip-card-front" onClick={handleFlip}>
                       <div className="card-content">
-                           <img src={imagePath} className="image-style" alt="text" ref={elementRef}></img>
+                           <img src={'./assets/collage-images/' + imgSrc} onLoad={handleImageLoad} className="image-style" alt="text" ref={elementRef}></img>
                       </div>
                   </div>
                   <div className="flip-card-back" onClick={handleFlip}>
                       <div className="card-content" >
                           {!isVideo ?  <p>{cardBack}</p> : <video id={'video_'+galleryNumber+'_'+postcardNumber} 
-                          width={'100%'} controls><source src="./assets/test.mp4" type="video/mp4"></source></video>}
+                          width={'100%'} controls><source src={'./assets/collage-videos/' + videoSrc} type="video/mp4"></source></video>}
                       </div>
                   </div>
               </div>
