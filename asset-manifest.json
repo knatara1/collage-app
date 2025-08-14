@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/collage-app/static/css/main.397622bc.css",
+    "main.js": "/collage-app/static/js/main.5a34ed57.js",
+    "static/js/453.d8925aef.chunk.js": "/collage-app/static/js/453.d8925aef.chunk.js",
+    "static/media/sandy-texture.jpg": "/collage-app/static/media/sandy-texture.286cc37d362463c61765.jpg",
+    "index.html": "/collage-app/index.html",
+    "main.397622bc.css.map": "/collage-app/static/css/main.397622bc.css.map",
+    "main.5a34ed57.js.map": "/collage-app/static/js/main.5a34ed57.js.map",
+    "453.d8925aef.chunk.js.map": "/collage-app/static/js/453.d8925aef.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.397622bc.css",
+    "static/js/main.5a34ed57.js"
+  ]
+}
